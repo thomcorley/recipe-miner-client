@@ -4,19 +4,22 @@ import { Container, Hero, Heading } from "react-bulma-components";
 
 const NavigationBar = () => {
   return (
-      <Hero color="info" size="small">
-        <Hero.Body>
-          <Container>
-            <Heading>RecipeMiner</Heading>
-            <Heading
-              size={4}
-              weight="light"
-              subtitle
-              spaced
-            >
-              curated recipe search
-            </Heading>
-          </Container>
+    <Hero
+    color="info"
+    size="small"
+    className="has-text-centered"
+    >
+      <Hero.Body>
+        <Container>
+          <Heading size={2} >RecipeMiner</Heading>
+          <Heading
+            size={6}
+            weight="light"
+            subtitle
+          >
+            curated recipe search
+          </Heading>
+        </Container>
       </Hero.Body>
     </Hero>
   );
