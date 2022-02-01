@@ -1,17 +1,24 @@
 import React from "react";
 import "bulma/css/bulma.min.css";
-import { Navbar } from "react-bulma-components";
+import { Container, Hero, Heading } from "react-bulma-components";
 
 const NavigationBar = () => {
   return (
-    <Navbar>
-      <Navbar.Brand>
-        <Navbar.Item>
-          <h1>Recipe Miner</h1>
-        </Navbar.Item>
-        <Navbar.Burger />
-      </Navbar.Brand>
-    </Navbar>
+      <Hero color="info" size="small">
+        <Hero.Body>
+          <Container>
+            <Heading>RecipeMiner</Heading>
+            <Heading
+              size={4}
+              weight="light"
+              subtitle
+              spaced
+            >
+              curated recipe search
+            </Heading>
+          </Container>
+      </Hero.Body>
+    </Hero>
   );
 };
 
