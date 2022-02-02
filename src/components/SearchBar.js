@@ -1,14 +1,31 @@
-import React from "react";
+import { React, useState } from "react";
 import "bulma/css/bulma.min.css";
-import { Section, Container } from "react-bulma-components";
+import "../styles/search-bar.css";
+import { Section, Container, Form } from "react-bulma-components";
 
 const SearchBar = () => {
+  const [term, setTerm] = useState("");
+
+  const handleOnChange = (event) => {
+    setTerm(event.target.value);
+  };
+
   return (
-    <Section>
-      <Container>
-        <div className="has-text-centered">SearchBar</div>
-      </Container>
-    </Section>
+    <div className="search-container">
+      <Section>
+        <Container>
+          <Form.Field>
+            <Form.Control>
+              <Form.Input
+                placeholder="search for a recipe"
+                type="text"
+                onChange={handleOnChange}
+              />
+            </Form.Control>
+          </Form.Field>
+        </Container>
+      </Section>
+    </div>
   );
 };
 

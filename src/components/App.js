@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 
 const App = () => {
   return (
-    <div>
+    <div className="has-text-centered">
       <NavigationBar />
       <SearchBar />
     </div>
