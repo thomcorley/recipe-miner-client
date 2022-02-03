@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import "bulma/css/bulma.min.css";
+import _ from "lodash";
 import "../styles/search-bar.css";
+import recipes from '../data/grubdailyRecipes.json';
 import { Section, Container, Form } from "react-bulma-components";
 
 const SearchBar = () => {
@@ -22,6 +24,7 @@ const SearchBar = () => {
         }
       }, 500)
 
+      // TODO: watch the React course to find out why this is needed
       return () => {
         clearTimeout(timeoutId);
       }
@@ -29,28 +32,30 @@ const SearchBar = () => {
   }, [term]);
 
   const search = async () => {
-    const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
-      params: {
-        action: "query",
-        list: "search",
-        origin: "*",
-        format: "json",
-        srsearch: term,
-      },
-    });
+    // const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
+    //   params: {
+    //     action: "query",
+    //     list: "search",
+    //     origin: "*",
+    //     format: "json",
+    //     srsearch: term,
+    //   },
+    // });
 
-    setResults(data.query.search);
+    setResults(_.sampleSize(recipes, 10));
   };
 
   const handleOnChange = (event) => {
     setTerm(event.target.value);
   };
 
-  const recipes = ["apples", "bananas", "oranges"];
-
   const renderedResults = results.map(result => {
     return (
-      <a href={`https://en.wikipedia.org?curid=${result.pageid}`} target="_blank">
+      <a
+        key={result.title}
+        href={`https://www.grubdaily.com/recipes/${result.id}`}
+        target="_blank"
+      >
         <h2>{result.title}</h2>
       </a>
     )
