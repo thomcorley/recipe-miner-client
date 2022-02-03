@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 // import axios from "axios";
+import { Section, Container, Form } from "react-bulma-components";
 import "bulma/css/bulma.min.css";
 import _ from "lodash";
 import "../styles/search-bar.css";
-import recipes from '../data/grubdailyRecipes.json';
-import { Section, Container, Form } from "react-bulma-components";
+import recipes from "../data/grubdailyRecipes.json";
+import RecipeCard from "./RecipeCard";
 
 const SearchBar = () => {
   const [term, setTerm] = useState("");
@@ -50,15 +51,7 @@ const SearchBar = () => {
   };
 
   const renderedResults = results.map(result => {
-    return (
-      <a
-        key={result.title}
-        href={`https://www.grubdaily.com/recipes/${result.id}`}
-        target="_blank"
-      >
-        <h2>{result.title}</h2>
-      </a>
-    )
+    return <RecipeCard recipe={result} />
   });
 
   return (
