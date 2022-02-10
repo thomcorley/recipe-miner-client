@@ -5,7 +5,7 @@ const RecipeCard = ({recipe}) => {
     // TODO: add Bulma styles for a nicely designed recipe card with photo
     <a
       key={recipe.title}
-      href={`https://www.grubdaily.com/recipes/${recipe.id}`}
+      href={recipe.recipe_url}
       target="_blank"
     >
       <h2>{recipe.title}</h2>
