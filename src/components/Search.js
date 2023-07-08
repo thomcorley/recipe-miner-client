@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-// import _ from "lodash";
 import axios from "axios";
-import { Section, Container, Form } from "react-bulma-components";
-import "bulma/css/bulma.min.css";
 import "../styles/search-bar.css";
 import RecipeCard from "./RecipeCard";
+import SearchInput from "./SearchInput";
 
-const SearchBar = () => {
+const Search = () => {
   const [term, setTerm] = useState("");
   const [results, setResults] = useState([]);
 
@@ -24,7 +22,6 @@ const SearchBar = () => {
         }
       }, 500)
 
-      // TODO: watch the React course to find out why this is needed
       return () => {
         clearTimeout(timeoutId);
       }
@@ -37,7 +34,7 @@ const SearchBar = () => {
         query: term
       },
     });
-    console.log(data)
+
     setResults(data);
   };
 
@@ -46,32 +43,28 @@ const SearchBar = () => {
   };
 
   const renderedResults = results.map(result => {
-    return <RecipeCard recipe={result} />
+    return <RecipeCard recipe={result} key={`recipe-${result.id}`} />
   });
 
   return (
     <div className="search-container">
-      <Section>
-        <Container className="inner-container">
-          <Form.Field>
-            <Form.Control>
-              <Form.Input
-                placeholder="search for a recipe"
-                type="text"
-                onChange={handleOnChange}
-              />
-            </Form.Control>
-          </Form.Field>
-        </Container>
+      <section className="section">
+        <div className="container inner-container">
+          <div className="field">
+            <div className="control">
+              <SearchInput handleChange={handleOnChange} />
+            </div>
+          </div>
+        </div>
 
-        <Container className="inner-container">
+        <div className="inner-container">
           <div>
             {term && renderedResults}
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
     </div>
   );
 };
 
-export default SearchBar;
+export default Search;
